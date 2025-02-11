@@ -28,6 +28,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             EducationalPlatformTheme {
+
+
                 val navController = rememberNavController()
                 MainScreen(navController)
             }
@@ -54,6 +56,10 @@ fun NavigationGraph(navController: NavHostController) {
         composable("home") { HomeScreen(navController) }
         composable("form") { FormScreen(navController) }
         composable("profile") { ProfileScreen(navController) }
+        composable("profession/{professionId}") { backStackEntry ->
+            val professionId = backStackEntry.arguments?.getString("professionId") ?: ""
+            ProfessionScreen(navController, professionId)
+        }
     }
 }
 
